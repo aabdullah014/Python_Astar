@@ -1,7 +1,18 @@
 from sre_parse import WHITESPACE
 from string import whitespace
 import pygame
-import colors
+
+
+red = (255, 0 ,0)
+green = (0, 255, 0)
+blue = (0, 255, 0)
+yellow = (255, 255, 0)
+white = (255, 255 ,255)
+black = (0, 0, 0)
+purple = (160, 110, 20)
+orange = (255, 165, 0)
+grey = (128, 128, 128)
+turquoise = (64, 225, 208)
 
 class Tile:
     def __init__(self, row, col, width, total_rows, isClickable):
@@ -9,7 +20,7 @@ class Tile:
         self.col = col
         self.x = row*width
         self.y = col*width
-        self.color = colors.white
+        self.color = white
         self.neighbors = []
         self.width = width
         self.total_rows = total_rows
@@ -24,41 +35,41 @@ class Tile:
         return self.row, self.col
 
     def is_checked(self):
-        return self.color == colors.red
+        return self.color == red
 
     def is_open(self):
-        return self.color == colors.green
+        return self.color == green
 
     def is_barrier(self):
-        return self.color == colors.black
+        return self.color == black
     
     def is_start(self):
-        return self.color == colors.orange
+        return self.color == orange
 
     def is_end(self):
-        return self.color == colors.purple
+        return self.color == purple
 
     # Functions to make the tile a certain type
     def make_checked(self):
-        self.color == colors.red
+        self.color = red
 
     def make_open(self):
-        self.color == colors.green
+        self.color = green
 
     def make_barrier(self):
-        self.color == colors.black
+        self.color = black
     
     def make_start(self):
-        self.color == colors.orange
+        self.color = orange
 
     def make_end(self):
-        self.color == colors.purple
+        self.color = purple
 
     def make_path(self):
-        self.color = colors.turquoise
+        self.color = turquoise
 
     def reset(self):
-        self.color == colors.white
+        self.color = white
 
 
     # Actually draw the tile, pygame starts drawing from top left
@@ -66,6 +77,12 @@ class Tile:
         pygame.draw.rect(win, self.color, (self.x, self.y, self.width, self.width))
     
     def update_neighbors(self, grid):
-        
+        self.neighbors = []
+        if self.row < self.total_rows - 1 and not grid[self.row - 1][self.col].is_barrier():
+            self.neighbors.append(grid[self.row - 1][self.col])
+
+    # Compares two tiles and says the other tiles is less than the current tile
+    def __lt__(self, other):
+        return False
 
     
