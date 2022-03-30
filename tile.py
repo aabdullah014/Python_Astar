@@ -38,7 +38,7 @@ class Tile:
         return self.color == red
 
     def is_open(self):
-        return self.color == green
+        return self.color == turquoise
 
     def is_barrier(self):
         return self.color == black
@@ -54,7 +54,7 @@ class Tile:
         self.color = red
 
     def make_open(self):
-        self.color = green
+        self.color = turquoise
 
     def make_barrier(self):
         self.color = black
@@ -66,7 +66,7 @@ class Tile:
         self.color = purple
 
     def make_path(self):
-        self.color = turquoise
+        self.color = green
 
     def reset(self):
         self.color = white

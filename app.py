@@ -3,7 +3,7 @@ from grid import make_grid, get_clicked_position, draw
 from algorithm import algorithm_astar
 
 
-dimension = 900
+dimension = 500
 
 window = pygame.display.set_mode((dimension, dimension))
 pygame.display.set_caption("A* Python Pathfinding")
