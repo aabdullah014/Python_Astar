@@ -1,6 +1,7 @@
 # Python_Astar
 
-https://user-images.githubusercontent.com/96795264/160749280-f657f324-67b4-4e4d-a31c-2122a6c67aa1.mov
+
+https://user-images.githubusercontent.com/96795264/160749705-142ff2e4-2356-44a6-8b11-2e5f1b140507.mov
 
 This program uses the A* algorithm to find the shortest distance between two points, given at least one path exists between the two points. Made with Python and visualized with Pygame.
 
