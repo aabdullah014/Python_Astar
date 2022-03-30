@@ -1,5 +1,6 @@
 from queue import PriorityQueue
 from heuristic import h
+from grid import reconstruct_path
 import pygame
 
 def algorithm_astar(draw, grid, start, end):
@@ -38,6 +39,8 @@ def algorithm_astar(draw, grid, start, end):
 
         # At the end
         if current == end:
+            reconstruct_path(came_from, end, draw)
+            end.make_end()
             return True
 
         # Consider g and f score of all neighbors

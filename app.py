@@ -1,5 +1,4 @@
 import pygame
-import math
 from grid import make_grid, get_clicked_position, draw
 from algorithm import algorithm_astar
 
@@ -18,9 +17,8 @@ def main(win, width):
     start = None
     end = None
 
-    # If mainloop has run or not, and if algorithm has started or not
+    # If mainloop has run or not
     run = True
-    started = False
 
     while run:
         draw(win, grid, rows, width)
@@ -28,9 +26,6 @@ def main(win, width):
             if event.type == pygame.QUIT:
                 run = False
             
-            # Once algorithm started, user should not be able to change anything
-            if started:
-                continue
 
             # Check for LMB click
             if pygame.mouse.get_pressed()[0]:
@@ -63,11 +58,18 @@ def main(win, width):
             
             # Start algorithm when space key pressed
             if event.type == pygame.KEYDOWN:
-                if event.key == pygame.K_SPACE and not started:
+                if event.key == pygame.K_SPACE and start and end:
                     for row in grid:
                         for tile in row:
                             tile.update_neighbors(grid)
-                        algorithm_astar(lambda: draw(win, grid, rows, width), grid, start, end)
+                    
+                    algorithm_astar(lambda: draw(win, grid, rows, width), grid, start, end)
+
+            
+                if event.key == pygame.K_c:
+                    start = None
+                    end = None
+                    grid = make_grid(rows, width)
     pygame.quit()
 
 main(window, dimension)
