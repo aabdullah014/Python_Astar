@@ -78,8 +78,22 @@ class Tile:
     
     def update_neighbors(self, grid):
         self.neighbors = []
-        if self.row < self.total_rows - 1 and not grid[self.row - 1][self.col].is_barrier():
+
+        # Can you move down?
+        if self.row < self.total_rows - 1 and not grid[self.row + 1][self.col].is_barrier():
+            self.neighbors.append(grid[self.row + 1][self.col])
+        
+        # Can you move up?
+        if self.row > 0 and not grid[self.row - 1][self.col].is_barrier():
             self.neighbors.append(grid[self.row - 1][self.col])
+        
+        # Can you move right?
+        if self.col < self.total_rows - 1 and not grid[self.row][self.col + 1].is_barrier():
+            self.neighbors.append(grid[self.row][self.col + 1])
+        
+        # Can you move left?
+        if self.col > 0 and not grid[self.row][self.col - 1].is_barrier():
+            self.neighbors.append(grid[self.row][self.col - 1])
 
     # Compares two tiles and says the other tiles is less than the current tile
     def __lt__(self, other):

@@ -1,7 +1,7 @@
 import pygame
 import math
 from grid import make_grid, get_clicked_position, draw
-from queue import PriorityQueue
+from algorithm import algorithm_astar
 
 
 dimension = 900
@@ -60,6 +60,14 @@ def main(win, width):
                 
                 if tile == end:
                     end = None
+            
+            # Start algorithm when space key pressed
+            if event.type == pygame.KEYDOWN:
+                if event.key == pygame.K_SPACE and not started:
+                    for row in grid:
+                        for tile in row:
+                            tile.update_neighbors(grid)
+                        algorithm_astar(lambda: draw(win, grid, rows, width), grid, start, end)
     pygame.quit()
 
 main(window, dimension)
